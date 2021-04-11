@@ -195,7 +195,7 @@ public class SampleUser implements User, Serializable {
     public void setEnrollment(Enrollment enrollment) {
 
         this.enrollment = enrollment;
-        saveState();
+        //saveState();
 
     }
 

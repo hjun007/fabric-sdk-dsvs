@@ -42,6 +42,8 @@ function up(){
 function down(){
   docker-compose -f docker-compose-cli.yaml -f docker-compose-etcdraft.yaml down -v;
   docker rmi $(docker images dev-* -q) -f
+  docker stop $(docker ps -aq)
+  docker rm $(docker ps -aq)
 }
 
 function stop (){

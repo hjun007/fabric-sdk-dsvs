@@ -190,7 +190,7 @@ public class SampleStore {
 
             String certificate = new String(IOUtils.toByteArray(new FileInputStream(certificateFile)), "UTF-8");
 
-            PrivateKey privateKey = getPrivateKeyFromBytes(IOUtils.toByteArray(new FileInputStream(privateKeyFile)));
+            //PrivateKey privateKey = getPrivateKeyFromBytes(IOUtils.toByteArray(new FileInputStream(privateKeyFile)));
             PrivateKey dsvsKey = new PrivateKey() {
                 @Override
                 public String getAlgorithm() {
@@ -217,15 +217,6 @@ public class SampleStore {
             e.printStackTrace();
             throw e;
 
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw e;
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-            throw e;
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-            throw e;
         } catch (ClassCastException e) {
             e.printStackTrace();
             throw e;

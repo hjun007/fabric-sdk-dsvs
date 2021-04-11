@@ -257,6 +257,10 @@ public class CryptoSM implements CryptoSuite {
             //System.out.println(s);
             String sigStr = s.split("\"")[s.split("\"").length - 2];
 
+            if(sigStr.length() == 0) {
+                throw new Exception("sign from rest api err");
+            }
+
             return new BigInteger(sigStr, 16).toByteArray();
         } catch (Exception e) {
             throw new CryptoException("Unable to sign", e);

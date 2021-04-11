@@ -10,13 +10,13 @@ import static java.lang.String.format;
 
 public class TestUtil {
 
-    public static String configHome = "/home/hj/workspace/java/gm-docker-with-bjca-1/crypto-config-20210329";
+    public static String configHome = "/home/hj/workspace/java/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329";
 
     public static String userName = "Admin@org1.bjca.com";
     private static String userSk = configHome + "/msp/keystore";
     private static String userCert = configHome + "/admin.org1/msp/signcerts/admin1.org1.id.crt.pem";
 
-    public static String peerName = "peer0";
+    public static String peerName = "admin";
     public static String org = "org1";
     public static String mspId = "Org1MSP";
 
@@ -49,7 +49,7 @@ public class TestUtil {
         }
         final SampleStore sampleStore = new SampleStore(sampleStoreFile);
         try {
-            appuser = sampleStore.getMember(peerName, org, mspId,
+            appuser = sampleStore.getMember("org1.admin", org, mspId,
                     null,
                     new File(userCert));
         } catch (Exception e) {
