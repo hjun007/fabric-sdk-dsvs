@@ -48,7 +48,7 @@ public interface CryptoSuiteFactory {
 
     CryptoSuite getCryptoSuite(Properties properties) throws CryptoException, InvalidArgumentException;
 
-    /**
+    /**loadChannelFromConfi
      * Return a default crypto suite
      * @return
      * @throws CryptoException

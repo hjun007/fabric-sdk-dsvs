@@ -1,13 +1,22 @@
 package org.hyperledger.fabric.sdkintegration;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.security.CryptoSuite;
+import org.whu.gmssl.jsse.provider.GMJsseProvider;
 
 import java.io.File;
 import java.io.Serializable;
+import java.security.Security;
 import java.util.Collection;
+import java.util.HashMap;
 
 public class End2endQueryAndInvoke {
+
+    static {
+        Security.insertProviderAt(new GMJsseProvider(), 1);
+        Security.insertProviderAt(new BouncyCastleProvider(), 2);
+    }
 
     public static void main(String[] args) throws Exception {
         CryptoSuite cryptoSuite = CryptoSuite.Factory.getCryptoSuite();
