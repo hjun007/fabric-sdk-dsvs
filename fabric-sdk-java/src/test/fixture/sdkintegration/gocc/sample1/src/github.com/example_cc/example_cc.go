@@ -118,6 +118,10 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return t.move(stub, args)
 	}
 
+	if function == "set" {
+	    return t.set(stub, args)
+	}
+
 	Error.Printf("Unknown action, check the first argument, must be one of 'delete', 'query', or 'move'. But got: %v", args[0])
 	return shim.Error(fmt.Sprintf("Unknown action, check the first argument, must be one of 'delete', 'query', or 'move'. But got: %v", args[0]))
 }
@@ -251,6 +255,30 @@ func (t *SimpleChaincode) query(stub shim.ChaincodeStubInterface, args []string)
 	Info.Printf("Query Response:%s\n", jsonResp)
 	return shim.Success(Avalbytes)
 }
+
+func (t *SimpleChaincode) set(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+    var key string
+    var val string
+    var err error
+
+    if len(args) != 2 {
+        return shim.Error("Incorrect number of arguments. Expecting 2")
+    }
+
+    key = args[0]
+    val = args[1]
+
+    err = stub.PutState(key, []byte(val))
+    if err != nil {
+        return shim.Error(err.Error())
+    }
+    Info.Printf("Set Response:%s\n", key + "=" + val)
+    return shim.Success([]byte(key + "=" + val))
+}
+
+
+
+
 
 func main() {
 	err := shim.Start(new(SimpleChaincode))

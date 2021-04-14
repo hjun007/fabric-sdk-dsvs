@@ -13,6 +13,11 @@ organizations:
     peers:
       - peer0.org1.bjca.com
       - peer1.org1.bjca.com
+  Org1:
+    mspid: Org2MSP
+    peers:
+      - peer0.org2.bjca.com
+      - peer1.org2.bjca.com
 peers:
   peer0.org1.bjca.com:
     url: grpcs://peer0.org1.bjca.com:7051
@@ -65,6 +70,8 @@ orderers:
 
 channels:
   v2channel:
+    chaincodes:
+      - lc_example_cc_go:11
     orderers:
       - orderer1.org0.bjca.com
       - orderer2.org0.bjca.com
@@ -74,23 +81,23 @@ channels:
         endorsingPeer: true
         chaincodeQuery: true
         ledgerQuery: true
-        eventSource: false
-        discover: true
+        eventSource: true
+        discover: false
       peer1.org1.bjca.com:
         endorsingPeer: true
-        chaincodeQuery: false
+        chaincodeQuery: true
         ledgerQuery: true
-        eventSource: false
-        discover: true
+        eventSource: true
+        discover: false
       peer0.org2.bjca.com:
         endorsingPeer: true
-        chaincodeQuery: false
+        chaincodeQuery: true
         ledgerQuery: true
-        eventSource: false
-        discover: true
+        eventSource: true
+        discover: false
       peer1.org2.bjca.com:
         endorsingPeer: true
-        chaincodeQuery: false
+        chaincodeQuery: true
         ledgerQuery: true
-        eventSource: false
-        discover: true
+        eventSource: true
+        discover: false

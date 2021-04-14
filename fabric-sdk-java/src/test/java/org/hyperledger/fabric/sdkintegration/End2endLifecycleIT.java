@@ -487,12 +487,12 @@ public class End2endLifecycleIT {
             out("Org1 doing init");
             transactionEvent = executeChaincode(org1Client, org1.getPeerAdmin(), org1Channel, "init",
                     initRequired ? true : null, // doInit don't even specify it has it should default to false
-                    chaincodeName, chaincodeType, "a,", "100", "b", "300").get(testConfig.getTransactionWaitTime(), TimeUnit.SECONDS);
+                    chaincodeName, chaincodeType, "a", "100", "b", "300").get(testConfig.getTransactionWaitTime(), TimeUnit.SECONDS);
             assertTrue(transactionEvent.isValid());
 
             transactionEvent = executeChaincode(org2Client, org2.getPeerAdmin(), org2Channel, "move",
                     false, // doInit
-                    chaincodeName, chaincodeType, "a,", "b", "10").get(testConfig.getTransactionWaitTime(), TimeUnit.SECONDS);
+                    chaincodeName, chaincodeType, "a", "b", "10").get(testConfig.getTransactionWaitTime(), TimeUnit.SECONDS);
             assertTrue(transactionEvent.isValid());
 
             if (null != expected) {
@@ -982,15 +982,6 @@ public class End2endLifecycleIT {
         out("Constructing channel %s", name);
 
         SampleUser peerAdmin = myOrg.getPeerAdmin();
-        System.out.println(peerAdmin.mspId);
-        if(peerAdmin.mspId.equals("Org1MSP")){
-            System.setProperty("DSVS_REST_API_APP_NAME", "Admin1Org1");
-        } else if(peerAdmin.mspId.equals("Org2MSP")) {
-            System.setProperty("DSVS_REST_API_APP_NAME", "Admin1Org2");
-        } else {
-            throw new Exception("Org name does not match");
-        }
-        System.out.println(System.getProperty("DSVS_REST_API_APP_NAME"));
 
         client.setUserContext(peerAdmin);
 
