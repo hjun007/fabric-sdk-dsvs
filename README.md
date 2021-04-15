@@ -21,5 +21,8 @@ cd gm-docker-with-bjca-1
 # 测试query和invoke
 运行fabric-sdk-java/src/test/java/org/hyperledger/fabric/sdkintegration/End2endQueryAndInvoke.java
 
+# 测试query和invoke的性能
+运行fabric-sdk-java/src/test/java/org/hyperledger/fabric/sdkintegration/End2endQueryAndInvokePerformance.java
+
 # 启动fabric rest api
 运行fabric-sdk-dsvs-rest/src/main/java/com/bjca/fabricsdkdsvsrest/FabricSdkDsvsRestApplication.java
