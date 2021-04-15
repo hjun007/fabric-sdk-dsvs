@@ -229,7 +229,7 @@ public class CryptoSM implements CryptoSuite {
 //            byte[] sig = signer.generateSignature();
 
 
-            System.setProperty("DSVS_REST_API_URL", "http://localhost:10086/sign_sm2");
+            //System.setProperty("DSVS_REST_API_URL", "http://localhost:10086/sign_sm2");
             String URL = System.getProperty("DSVS_REST_API_URL");
             String AppName = "";
             if(new String(key.getEncoded()).equals("Org1MSP")) {
