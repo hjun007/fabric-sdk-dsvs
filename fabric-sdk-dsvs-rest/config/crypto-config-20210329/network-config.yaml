@@ -1,0 +1,103 @@
+---
+name: test-network-org1
+version: 1.0.0
+client:
+  organization: Org1
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org1:
+    mspid: Org1MSP
+    peers:
+      - peer0.org1.bjca.com
+      - peer1.org1.bjca.com
+  Org1:
+    mspid: Org2MSP
+    peers:
+      - peer0.org2.bjca.com
+      - peer1.org2.bjca.com
+peers:
+  peer0.org1.bjca.com:
+    url: grpcs://peer0.org1.bjca.com:7051
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.bjca.com
+      hostnameOverride: peer0.org1.bjca.com
+  peer1.org1.bjca.com:
+    url: grpcs://peer1.org1.bjca.com:8051
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.org1.bjca.com
+      hostnameOverride: peer1.org1.bjca.com
+  peer0.org2.bjca.com:
+    url: grpcs://peer0.org2.bjca.com:9051
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.bjca.com
+      hostnameOverride: peer0.org2.bjca.com
+  peer1.org2.bjca.com:
+    url: grpcs://peer1.org2.bjca.com:10051
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.org2.bjca.com
+      hostnameOverride: peer1.org2.bjca.com
+
+orderers:
+  orderer1.org0.bjca.com:
+    url: grpcs://orderer1.org0.bjca.com:7050
+    grpcOptions:
+      ssl-target-name-override: orderer1.org0.bjca.com
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+  orderer2.org0.bjca.com:
+    url: grpcs://orderer2.org0.bjca.com:8050
+    grpcOptions:
+      ssl-target-name-override: orderer2.org0.bjca.com
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+  orderer3.org0.bjca.com:
+    url: grpcs://orderer3.org0.bjca.com:9050
+    grpcOptions:
+      ssl-target-name-override: orderer3.org0.bjca.com
+    tlsCACerts:
+      path: D:/workspace/idea/fabric-sdk-java-dsvs/gm-docker-with-bjca-1/crypto-config-20210329/admin.org1/tls/ica.cert.pem
+
+channels:
+  v2channel:
+    chaincodes:
+      - lc_example_cc_go:11
+    orderers:
+      - orderer1.org0.bjca.com
+      - orderer2.org0.bjca.com
+      - orderer3.org0.bjca.com
+    peers:
+      peer0.org1.bjca.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+        discover: false
+      peer1.org1.bjca.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+        discover: false
+      peer0.org2.bjca.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+        discover: false
+      peer1.org2.bjca.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+        discover: false
