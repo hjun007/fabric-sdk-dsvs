@@ -2,12 +2,16 @@ package router
 
 import (
 	"encoding/hex"
+	"fmt"
+	"github.com/Unknwon/goconfig"
 	"github.com/gin-gonic/gin"
 	"log"
 	"math/big"
 	"net/http"
 	"restApi/tools"
 )
+
+var Config *goconfig.ConfigFile
 
 type ReqData struct {
 	Data	string	`json:"data"`
@@ -26,11 +30,14 @@ func SignSm2(c *gin.Context) {
 	c.BindJSON(reqJson)
 	log.Printf("%+v\n", reqJson)
 
+	dsvsConfigPath, err := Config.GetValue("dsvs", "dsvs_config_path")
+	fmt.Println(dsvsConfigPath)
+	if err != nil {
+		panic("config.ini property dsvs.dsvs_config_path not found"+ err.Error())
+	}
 	var configFile []byte
-	if reqJson.AppName == "Admin1Org1" {
-		configFile = []byte("/home/hj/workspace/go/rest-api/config/admin1.org1/BJCA_SVS_Config.ini")
-	} else if reqJson.AppName == "Admin1Org2" {
-		configFile = []byte("/home/hj/workspace/go/rest-api/config/admin1.org2/BJCA_SVS_Config.ini")
+	if reqJson.AppName == "Admin1Org1" || reqJson.AppName == "Admin1Org2"{
+		configFile = []byte(dsvsConfigPath + "/" + reqJson.AppName + "/BJCA_SVS_Config.ini")
 	} else {
 		c.JSON(http.StatusBadRequest, &Response{
 			Code: http.StatusBadRequest,
@@ -41,7 +48,12 @@ func SignSm2(c *gin.Context) {
 		return
 	}
 
-	bigData, _ := new(big.Int).SetString(reqJson.Data, 16)
+	fmt.Println(reqJson.Data)
+
+	bigData, ok := new(big.Int).SetString(reqJson.Data, 16)
+	if !ok {
+		fmt.Println("reqJson.Data set to big.Int err")
+	}
 	sig, err := tools.SignData(configFile, bigData.Bytes())
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, &Response{

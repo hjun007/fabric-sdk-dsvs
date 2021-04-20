@@ -8,21 +8,20 @@ import (
 	"restApi/router"
 )
 
-
-
 func main() {
 
 	log.Println(os.Getenv("PWD"))
 
-	config, err := goconfig.LoadConfigFile("./config.ini")
+	var err error
+	router.Config, err = goconfig.LoadConfigFile("./config.ini")
 	if err != nil {
 		panic(err.Error())
 	}
-	port, err := config.GetValue("self", "port")
+	port, err := router.Config.GetValue("self", "port")
 	if err != nil {
 		panic(err.Error())
 	}
-	dsvsLibFile, err := config.GetValue("self", "dsvs_lib_file")
+	dsvsLibFile, err := router.Config.GetValue("dsvs", "dsvs_lib_file")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -38,6 +37,6 @@ func main() {
 
 /*
 
-curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"hashed_data": "xxx","app_name": "xxxx"}'  http://localhost:10086/sign_sm2
+curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"data": "xxx","app_name": "Admin1Org1"}'  http://localhost:10086/sign_sm2
 
  */

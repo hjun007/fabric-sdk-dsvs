@@ -32,7 +32,7 @@ func TestSignHashedData(t *testing.T) {
 	fmt.Printf("%02x\n", b)
 	fmt.Println(hex.EncodeToString(b))
 
-	configFile := []byte("/home/hj/go/fabric-samples/bjca-sm2-dsvs-2.0.0-raft/dsvs/admin1.org1/BJCA_SVS_Config.ini")
+	configFile := []byte("/home/hj/go/fabric-samples/bjca-sm2-dsvs-2.0.0-raft/dsvs/Admin1Org1/BJCA_SVS_Config.ini")
 	digest := sm3.SumSM3([]byte("hello world"))
 	signData, err := SignHashedData(configFile, digest)
 	if err != nil {
@@ -102,7 +102,7 @@ func TestSignature(t *testing.T) {
 
 	sig := big.Int{}
 	digest := big.Int{}
-	configFile := "/home/hj/workspace/go/rest-api/config/admin1.org1/BJCA_SVS_Config.ini"
+	configFile := "/home/hj/workspace/go/rest-api/config/Admin1Org1/BJCA_SVS_Config.ini"
 
 	sig.SetString("304502201dcf381feb4a526f9dfed807b560ec4e8aefef5bea8be10998d295d22e2ee6d8022100b0ce76ad4b135ad788ec1f9a52a4d6b909d76cb8f3e67de4aa49797fe50c11c3", 16)
 	digest.SetString("f447d1c28c85a7391ab5bd6c38f5cc2d8231a28feb8853ab573f47d6a3502778", 16)
