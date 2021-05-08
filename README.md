@@ -16,16 +16,20 @@ cd gm-docker-with-bjca-1
 
 # 测试sdk
 设置环境变量DSVS_REST_API_URL=http://localhost:10086/sign_sm2，ip根据go rest api服务的ip调整
+
 运行fabric-sdk-java/src/test/java/org/hyperledger/fabric/sdkintegration/End2endLifecycleIT.java
 
 # 测试query和invoke
 设置环境变量DSVS_REST_API_URL=http://localhost:10086/sign_sm2
+
 运行fabric-sdk-java/src/test/java/org/hyperledger/fabric/sdkintegration/End2endQueryAndInvoke.java
 
 # 测试query和invoke的性能
 设置环境变量DSVS_REST_API_URL=http://localhost:10086/sign_sm2
+
 运行fabric-sdk-java/src/test/java/org/hyperledger/fabric/sdkintegration/End2endQueryAndInvokePerformance.java
 
 # 启动fabric rest api
 设置环境变量DSVS_REST_API_URL=http://localhost:10086/sign_sm2
+
 运行fabric-sdk-dsvs-rest/src/main/java/com/bjca/fabricsdkdsvsrest/FabricSdkDsvsRestApplication.java
